@@ -10,18 +10,18 @@
         var params = {
             // Request parameters
         };
-      
         $.ajax({
-            url: "https://www.haloapi.com/metadata/{title}/metadata/campaign-missions&" + $.param(params),
+            url: 'https://www.haloapi.com/metadata/h5/metadata/campaign-missions',
             beforeSend: function(xhrObj){
                 // Request headers
-                xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key","{subscription key}");
+                xhrObj.setRequestHeader('Ocp-Apim-Subscription-Key','6d69c548695d43f9812295ec9b169524');
             },
             type: "GET",
-            // Request body
-            data: "{body}",
+            dataType: "json",
+            data: null //"{body}",
         })
         .done(function(data) {
+            console.log(data);
             alert("success");
         })
         .fail(function() {
@@ -31,3 +31,7 @@
 </script>
 </body>
 </html>
+
+
+
+<!-- 6d69c548695d43f9812295ec9b169524 -->
