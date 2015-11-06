@@ -5,44 +5,21 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 </head>
 <body>
-
 <script type="text/javascript">
-    // $(function() {
-    //     var params = {
-    //         missionNumber:1
-    //     };
-      
-    //     $.ajax({
-    //         url: "https://www.haloapi.com/metadata/h5/metadata/campaign-missions&" + $.param(params),
-    //         beforeSend: function(xhrObj){
-    //             // Request headers
-    //             xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key","6d69c548695d43f9812295ec9b169524");
-    //         },
-    //         type: "GET",
-    //         // Request body
-    //         data: "",
-    //     })
-    //     .done(function(data) {
-    //         alert("success");
-    //     })
-    //     .fail(function() {
-    //         alert("error");
-    //     });
-    // });
     $(function() {
         var params = {
+            // Request parameters
         };
-
+      
         $.ajax({
-            url: 'https://www.haloapi.com/metadata/h5/metadata/campaign-missions&' + $.param(params),
-            type: 'GET',
-            data: {},
-            beforeSend : function( xhr ) {
-                xhr.setRequestHeader( "Ocp-Apim-Subscription-Key","6d69c548695d43f9812295ec9b169524" );
+            url: "https://www.haloapi.com/metadata/{title}/metadata/campaign-missions&" + $.param(params),
+            beforeSend: function(xhrObj){
+                // Request headers
+                xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key","{subscription key}");
             },
-            success: function( response ) {
-                // response
-            }
+            type: "GET",
+            // Request body
+            data: "{body}",
         })
         .done(function(data) {
             alert("success");
