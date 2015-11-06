@@ -12,14 +12,14 @@
         };
       
         $.ajax({
-            url: "https://www.haloapi.com/metadata/{title}/metadata/campaign-missions&" + $.param(params),
+            url: "https://www.haloapi.com/metadata/h5/metadata/campaign-missions&" + $.param(params),
             beforeSend: function(xhrObj){
                 // Request headers
-                xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key","{subscription key}");
+                xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key","6d69c548695d43f9812295ec9b169524");
             },
             type: "GET",
             // Request body
-            data: "{body}",
+            data: "",
         })
         .done(function(data) {
             alert("success");
