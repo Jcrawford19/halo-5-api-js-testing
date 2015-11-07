@@ -1,3 +1,4 @@
+require "haml"
 require "json"
 require "net/http"
 require "pp"
@@ -49,4 +50,8 @@ get "*.json" do
 
   client = HaloApi::Client.new
   client.get(slug).to_json
+end
+
+get "/" do
+  haml :app
 end

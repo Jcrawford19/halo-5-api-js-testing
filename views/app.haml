@@ -1,0 +1,20 @@
+%h1 Hacking Halo API
+
+%ul
+
+:javascript
+  $(function() {
+    $.getJSON('/metadata/campaign-missions.json')
+      .done(function(results) {
+
+        var $list = $('ul');
+
+        $.each(results, function(index, item) {
+          $list.append('<li>' + JSON.stringify(item) + '</li>');
+        });
+
+      })
+      .fail(function() {
+        window.alert("error");
+      });
+  });

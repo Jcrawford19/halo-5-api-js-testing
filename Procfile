@@ -1,1 +1,1 @@
-web: env VERBOSE=1 bundle exec ruby h5_api.rb -p $PORT
+web: env VERBOSE=1 bundle exec ruby app.rb -p $PORT
