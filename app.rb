@@ -4,6 +4,8 @@ require "net/http"
 require "pp"
 require "pry"
 require "sinatra"
+require "sinatra/reloader"
+
 
 # Api Wrapper
 # -----------
@@ -14,23 +16,15 @@ module HaloApi
     attr_accessor :api_url
 
     def initialize
-      @api_url = "https://www.haloapi.com/metadata/h5/"
+      @api_url = "https://www.haloapi.com/{:category_type}/h5/{:category_type}/"
     end
 
-    def get slug
-      api_endpoint = "#{@api_url}#{slug}"
-      uri = URI(api_endpoint)
+    def get resource, category_type = "metadata"
+      uri       = URI("#{@api_url}#{resource}".gsub(/{:category_type}/, category_type))
       uri.query = URI.encode_www_form({})
-
-      request = Net::HTTP::Get.new(uri.request_uri)
+      request   = Net::HTTP::Get.new(uri.request_uri)
       request["Ocp-Apim-Subscription-Key"] = ENV["API_KEY"]
-      #request.body = "{body}"
-
-      response = Net::HTTP.start(uri.host, uri.port, :use_ssl => uri.scheme == 'https') do |http|
-        p "http.request"
-        http.request(request)
-      end
-
+      response = Net::HTTP.start(uri.host, uri.port, use_ssl: uri.scheme == "https") { |http| http.request(request) }
       JSON.parse(response.body)
     end
 
@@ -41,15 +35,12 @@ end
 # API Endpoints
 # -------------
 
-get "*.json" do
+get "/*.json" do
   content_type :json
-
-  slug = params[:splat].first
-  pp params[:splat]
-  p "Route: #{slug}"
-
-  client = HaloApi::Client.new
-  client.get(slug).to_json
+  slug          = params[:splat].first
+  category_type = slug.split("/").first
+  resource      = slug.split("/").last
+  HaloApi::Client.new.get(resource, category_type).to_json
 end
 
 get "/" do

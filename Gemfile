@@ -20,5 +20,6 @@ group :default do
   gem "json"
   gem "pry"
   gem "sinatra"
+  gem "sinatra-contrib"
 
 end
