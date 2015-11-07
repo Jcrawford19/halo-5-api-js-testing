@@ -1,5 +1,5 @@
 # halo-5-api-js-testing
-Messing around with the halo 5 api, using JS &amp; jQuery
+Messing around with the halo 5 api, using Ruby, JS &amp; jQuery
 
 
 Customize .env.local with custom settings.
